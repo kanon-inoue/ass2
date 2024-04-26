@@ -1,25 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+// component
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
+// pages
+import VolcanoSearchPage from "./pages/VolcanoSearchPage";
+import LandingPage from './pages/LandingPage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+// import IndividualVolcanoPage from './pages/IndividualVolcanoPage';
+
+import { BrowserRouter, Routes, Route, redirect } from "react-router-dom";
+
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Header />
+        {/* the content */}
+        <Routes>
+         <Route path="/" element={<LandingPage />} />
+         <Route path="/volcanolist" element={<VolcanoSearchPage />} />
+         <Route path="/register" element={<RegisterPage/>} />
+         <Route path="/login" element={<LoginPage />} /> 
+        </Routes>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
-
-export default App;
