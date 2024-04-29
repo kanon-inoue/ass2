@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 const populatedWithin = [5, 10, 30, 100];
 
@@ -40,20 +40,26 @@ export default function VolcanoSearchPage() {
       </div>
       <div>
         <table>
-          <tr>
-            <td>Name</td>
-            <td>Region</td>
-            <td>Subregion</td>
-          </tr>
-          {volcanoes.map((volcano) => {
-            return (
-              <tr>
-                <td>{volcano.name}</td>
-                <td>{volcano.region}</td>
-                <td>{volcano.subregion}</td>
-              </tr>
-            )
-          })}
+          <thead>
+            <tr>
+              <td>Name</td>
+              <td>Region</td>
+              <td>Subregion</td>
+            </tr>
+          </thead>
+          <tbody>
+            {volcanoes.map((volcano) => {
+              return (
+                <tr>
+                  <td>
+                    <a href={`/individualvolcano/${volcano.id}`}>{volcano.name}</a>
+                  </td>
+                  <td>{volcano.region}</td>
+                  <td>{volcano.subregion}</td>
+                </tr>
+              )
+            })}
+          </tbody>
         </table>
       </div>
     </div>
