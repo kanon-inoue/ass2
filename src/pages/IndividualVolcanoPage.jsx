@@ -2,6 +2,25 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Container } from "reactstrap";
 import { Map, Marker } from "pigeon-maps";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 export default function IndividualVolcanoPage() {
   let { id } = useParams();
@@ -12,7 +31,11 @@ export default function IndividualVolcanoPage() {
   const token = localStorage.getItem("token");
   
   useEffect(() => {
-    fetch(`http://4.237.58.241:3000/volcano/${id}`)
+    fetch(`http://4.237.58.241:3000/volcano/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
       .then(res => res.json())
       .then(volcanoData => {
         setVolcano(volcanoData); // volcano = volcanoData
@@ -23,10 +46,15 @@ export default function IndividualVolcanoPage() {
     return <div />
   }
 
-  console.log(volcano)
+  console.log(volcano);
 
-  const latitude = parseInt(volcano.latitude)
-  const longitude = parseInt(volcano.longitude)
+  const latitude = parseInt(volcano.latitude);
+  const longitude = parseInt(volcano.longitude);
+
+  const pop5km = parseInt(volcano.population_5km);
+  const pop10km = parseInt(volcano.population_10km);
+  const pop30km = parseInt(volcano.population_30km);
+  const pop50km = parseInt(volcano.population_50km);
 
   return (
     <div>
@@ -38,6 +66,8 @@ export default function IndividualVolcanoPage() {
         <p>Last Eruption: {volcano.last_eruption}</p>
         <p>Summit: {volcano.summit} m</p>
         <p>Elevation: {volcano.elevation} ft</p>
+        <p>{volcano.population_5km}</p>
+        <p>{pop5km}</p>
 
       </Container>
       <div>
@@ -60,9 +90,28 @@ export default function IndividualVolcanoPage() {
           </Marker>
         </Map>
       </div>
-      <div> // chart image
-
-      </div>
+      { token !== "" ? (
+        <div>
+          <Bar
+            data={{
+              labels: ['5km', '10km', '30km', '50km'],
+              datasets: [{
+                label: "Population Density",
+                data: [pop5km, pop10km, pop30km, pop50km],
+                boaderWidth: 1
+              }]
+            }}
+            options={{
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }}
+          />
+        </div>
+      ) : null}
+      
     </div>
   );
 }
