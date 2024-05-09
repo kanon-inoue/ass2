@@ -1,17 +1,17 @@
 import React from "react";
+import { Container } from "reactstrap";
 
 export default function LandingPage() {
   return (
     <main>
-      {/* title */}
-      <div className='title'>
-        <h1>Volcanoes of the World</h1>
-      </div>
-      {/* image */}
-      <div id='img'>
-        <img src="img/mountain.jpg" alt="Img" />
-      </div>
-
+      <Container className="container">
+        {/* title */}
+        <h1 className='title'>Volcanoes of the World</h1>
+        {/* image */}
+        <div id='img'>
+          <img src="img/mountain.jpg" alt="image of Volcanoes surounded by clouds" />
+        </div>
+      </Container>
     </main>
   );
 }

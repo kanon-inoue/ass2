@@ -22,19 +22,19 @@ body {
   font-size: 16px;
 }
 body {
-  background: #fff;
+  background: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
  }
  header {
-  background: #2e8b57;
-  color: #fff;
+  background: #03256C;
+  color: #ffffff;
   padding: 10px 30px;
  }
  footer {
-  background: #222;
+  background: #03256C;
   padding: 40px;
   text-align: center;
-  color: #d8d8d8;
+  color: #ffffff;
  }
  nav ul li {
   display: inline-block;
@@ -42,14 +42,14 @@ body {
  nav {
   width: 50%;
   display: inline-block;
-  text-align: right;                           
+  text-align: left;                           
  }
  nav ul {
   list-style: none;
   margin: 0;                             
  }
  nav ul li a {
-  color: #fff;
+  color: #ffffff;
   text-decoration: none;
   display: block;
   padding: 10px 15px;
@@ -59,8 +59,44 @@ body {
  nav ul li a:hover {
   background: #444;                    
 }
-
 img {
   max-width: 100%;
   height: auto;  
+  margin-bottom: 30px;
+}
+.title {
+  margin-top: 30px;
+}
+.container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.listandmap {
+  display: flex;
+}
+.listandmap .list,
+.listandmap .map {
+  flex: 1;
+}
+.filters {
+  margin-top: 30px;
+}
+.filters > * {
+  margin-right: 8px;
+}
+.table {
+  margin-top: 20px;
+  display: flex;
+  overflow: hidden;
+}
+.formSection {
+  flex: 1;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+.submitButtons {
+  margin-top: 20px;
+}
+.link-secondary {
+  margin-left: 15px;
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Container } from "reactstrap";
 
 export default function RegisterPage () {
   const [email, setEmail] = useState('');
@@ -42,28 +43,44 @@ export default function RegisterPage () {
   }
 
   return (
-    <div>
+    <Container>
       <h1>Register</h1>
       {error ? (
-        <div>Error! {error}</div>
+        <div class="alert alert-danger" role="alert">Error! {error}</div>
       ) : null}
-      <form onSubmit={ handleSubmit }>
-        <input 
-          type="email"
-          id="email" 
-          name="email"  
-          value={email} 
-          onChange={ handleEmail }
-        />
-        <input 
-          type="password"
-          id="password" 
-          name="password"  
-          value={password} 
-          onChange={ handlePassword }
-        />
-        <button type="submit">Register</button>
+      <form className="form" onSubmit={ handleSubmit }>
+        <div className="formSection">
+          <label className="d-block">Email:</label>
+          <input 
+            className="d-block"
+            type="email"
+            id="email" 
+            name="email"  
+            value={email} 
+            onChange={ handleEmail }
+            style={{width: "350px"}}
+            placeholder="email@example.com"
+            alt="user registration input for their email address"
+          />
+        </div>
+        <div className="formSection">
+          <label className="d=block">Password:</label>
+          <input 
+            className="d-block"
+            type="password"
+            id="password" 
+            name="password"  
+            value={password} 
+            onChange={ handlePassword }
+            style={{width: "350px"}}
+            placeholder="Password"
+            alt="user registration input for their password"
+          />
+        </div>
+        <div className="submitButtons">
+          <button type="submit" className="btn btn-outline-primary submitbtn" accesskey="R">Register</button>
+        </div>
       </form>
-    </div>
+    </Container>
   )
 }

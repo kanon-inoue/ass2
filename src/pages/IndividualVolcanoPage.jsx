@@ -31,11 +31,12 @@ export default function IndividualVolcanoPage() {
   const token = localStorage.getItem("token");
   
   useEffect(() => {
-    fetch(`http://4.237.58.241:3000/volcano/${id}`, {
+    fetch(`http://4.237.58.241:3000/volcano/${id}`, token !== "" && token != null ? {
       headers: {
         Authorization: `Bearer ${token}`
       }
-    })
+      
+    } : {})
       .then(res => res.json())
       .then(volcanoData => {
         setVolcano(volcanoData); // volcano = volcanoData
@@ -57,41 +58,40 @@ export default function IndividualVolcanoPage() {
   const pop50km = parseInt(volcano.population_50km);
 
   return (
-    <div>
-      <Container>
-        <h3> {volcano.name} </h3>
-        <p>Country: {volcano.country}</p>
-        <p>Region: {volcano.region}</p>
-        <p>Subregion: {volcano.subregion}</p>
-        <p>Last Eruption: {volcano.last_eruption}</p>
-        <p>Summit: {volcano.summit} m</p>
-        <p>Elevation: {volcano.elevation} ft</p>
-        <p>{volcano.population_5km}</p>
-        <p>{pop5km}</p>
-
-      </Container>
-      <div>
-        <Map 
-          height={300} 
-          defaultCenter={[latitude, longitude]} 
-          defaultZoom={1}>
-          <Marker 
-            width={50}
-            anchor={[latitude, longitude]} 
-            color={color} 
-            onClick={() => setHue(hue + 20)} 
-          />
-          <Marker 
-            width={50}
-            anchor={[latitude, longitude]} 
-            color={color} 
-            onClick={() => setHue(hue + 20)} 
-          >
-          </Marker>
-        </Map>
+    <Container>
+      <div className="listandmap">
+        <div className="list">
+          <h3> {volcano.name} </h3>
+          <p>Country: {volcano.country}</p>
+          <p>Region: {volcano.region}</p>
+          <p>Subregion: {volcano.subregion}</p>
+          <p>Last Eruption: {volcano.last_eruption}</p>
+          <p>Summit: {volcano.summit} m</p>
+          <p>Elevation: {volcano.elevation} ft</p>
+        </div>
+        <div className="map">
+          <Map 
+            height={300} 
+            defaultCenter={[latitude, longitude]} 
+            defaultZoom={1}>
+            <Marker 
+              width={50}
+              anchor={[latitude, longitude]} 
+              color={color} 
+              onClick={() => setHue(hue + 20)} 
+            />
+            <Marker 
+              width={50}
+              anchor={[latitude, longitude]} 
+              color={color} 
+              onClick={() => setHue(hue + 20)} 
+            >
+            </Marker>
+          </Map>
+        </div>
       </div>
       { token !== "" ? (
-        <div>
+        <div className="barchart">
           <Bar
             data={{
               labels: ['5km', '10km', '30km', '50km'],
@@ -111,7 +111,6 @@ export default function IndividualVolcanoPage() {
           />
         </div>
       ) : null}
-      
-    </div>
+    </Container>
   );
 }
