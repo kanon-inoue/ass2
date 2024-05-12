@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather&display=swap");
+/* Simple browser reset */
+* {
+  box-sizing: border-box;
+}
+
+/* Responsive columns */
+@media (max-width: 700px) {
+  .features_box-wrapper {
+   flex-wrap: wrap;
+  }
+  .features_box {
+   flex: 1 100%;
+  }
+ }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  font-size: 16px;
+}
+body {
+  background: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+ }
+ header {
+  background: #03256C;
+  color: #ffffff;
+  padding: 10px 30px;
+ }
+ footer {
+  background: #03256C;
+  padding: 40px;
+  text-align: center;
+  color: #ffffff;
+ }
+ nav ul li {
+  display: inline-block;
+ }
+ nav {
+  width: 50%;
+  display: inline-block;
+  text-align: left;                           
+ }
+ nav ul {
+  list-style: none;
+  margin: 0;                             
+ }
+ nav ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  padding: 10px 15px;
+  border-radius: 3px;
+  transition: 0.3s ease all;                                
+ }
+ nav ul li a:hover {
+  background: #444;                    
+}
+img {
+  max-width: 100%;
+  height: auto;  
+  margin-bottom: 30px;
+}
+.title {
+  margin-top: 30px;
+}
+.container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.listandmap {
+  display: flex;
+}
+.listandmap .list,
+.listandmap .map {
+  flex: 1;
+}
+.filters {
+  margin-top: 30px;
+}
+.filters > * {
+  margin-right: 8px;
+}
+.table {
+  margin-top: 20px;
+  display: flex;
+  overflow: hidden;
+}
+.formSection {
+  flex: 1;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+.submitButtons {
+  margin-top: 20px;
+}
+.link-secondary {
+  margin-left: 15px;
+}
